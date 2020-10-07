@@ -15,7 +15,7 @@ function action(event) {
   
   // =================================================
   // Change email address HERE
-  var toAddress = "reported-email@random-company.nl";
+  var toAddress = "email-analysis@eset.nl";
   // =================================================
 
   const message_done = {
@@ -79,7 +79,7 @@ function successCallback(result) {
 // This function will display errors that occur 
 // we use this as a callback for errors in easyEws
 function showErrorCallback(error) {
-  console.log("Failback to manual forwarding");
+  //console.log("Failback to manual forwarding");
   var parentEmail = Office.context.mailbox.item;
 
   // Office.context.mailbox.userProfile.emailAddress
@@ -93,14 +93,14 @@ function showErrorCallback(error) {
             { type: "item", itemId : Office.context.mailbox.item.itemId, name: "DANGER_reported_email.eml", isInline: false }
         ]},
         function(asyncResult){
-          console.log(JSON.stringify(asyncResult));
+          //console.log(JSON.stringify(asyncResult));
           if (asyncResult.status == "succeeded")
           {
             parentEmail.notificationMessages.replaceAsync("action", message_manual);
             event.completed();
            } else  {
             parentEmail.notificationMessages.replaceAsync("action", message_failed); 
-            console.log("Action failed with error: " + asyncResult.error.message);
+            //console.log("Action failed with error: " + asyncResult.error.message);
            }
         }        
     );
